@@ -13,6 +13,7 @@
     "@uiw/react-md-editor": "^3.9.9",
     "axios": "^0.26.0",
     "firebase": "^9.6.7",
+    "framer-motion": "^6.2.8",
     "next": "12.1.0",
     "next-auth": "^4.2.1",
     "next-remove-imports": "^1.0.6",

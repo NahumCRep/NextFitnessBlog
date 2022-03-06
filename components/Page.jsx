@@ -5,6 +5,7 @@ import Seo from './Seo'
 const Page = ({children}) => {
     return (
         <div className='h-screen bg-slate-800 flex flex-col justify-between '>
+            <Seo />
             <Navbar />
             <main className="bg-slate-800 text-white">
                 {children}

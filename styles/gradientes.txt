@@ -1,0 +1,4 @@
+bg-gradient-to-tr from-gray-800 via-stone-200 to-white
+bg-gradient-to-br from-neutral-500 via-rose-100 to-slate-700
+bg-gradient-to-br from-fuchsia-100 via-gray-900 to-black
+bg-gradient-to-br from-violet-700 via-violet-400 to-cyan-800
