@@ -14,7 +14,7 @@ const MarkDownEditor = dynamic(
     }
 )
 
-export default function Create() {
+const Create = () => {
     const router = useRouter()
     const {data:session} = useSession()
     const [content,setContent] = useState("")
@@ -56,3 +56,5 @@ export default function Create() {
     </AdminPage>
   )
 }
+
+export default Create

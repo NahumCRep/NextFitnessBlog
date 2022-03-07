@@ -4,10 +4,10 @@ import Seo from './Seo'
 
 const Page = ({children}) => {
     return (
-        <div className='h-screen bg-slate-800 flex flex-col justify-between '>
+        <div className='h-screen bg-slate-300 flex flex-col justify-between '>
             <Seo />
             <Navbar />
-            <main className="bg-slate-800 text-white">
+            <main className='bg-slate-300'>
                 {children}
             </main>
             <footer className="bg-slate-900 p-10 text-white">

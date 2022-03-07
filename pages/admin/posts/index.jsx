@@ -3,7 +3,7 @@ import AdminPage from '../../../components/AdminPage'
 import Link from 'next/link'
 import axios from 'axios'
 
-export default function Posts() {
+const Posts = () => {
     useEffect(()=>{
         axios.get("/api/posts")
         .then(posts=>{
@@ -17,3 +17,5 @@ export default function Posts() {
         </AdminPage>
     )
 }
+
+export default Posts

@@ -1,8 +1,10 @@
 import React from 'react'
 import AdminPage from '../../components/AdminPage'
 
-export default function Admin() {
+const Admin = () => {
     return (
         <AdminPage>Admin</AdminPage>
     )
 }
+
+export default Admin

@@ -10,7 +10,7 @@ export default function Home() {
   const { data: session } = useSession()
   return (
     <>
-    <HeaderTwo />
+      <HeaderTwo />
       <div className='h-[600px]'>
         <button onClick={() => signIn()}>Sign in</button>
         <button onClick={() => signOut()}>Sign out</button>

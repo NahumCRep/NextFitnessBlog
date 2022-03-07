@@ -5,6 +5,7 @@ import {AiFillGoogleCircle} from "react-icons/ai"
 
 export async function getServerSideProps(context) {
     const csrfToken = await getCsrfToken(context)
+    // console.log(csrfToken)
     return {
       props: { csrfToken },
     }
