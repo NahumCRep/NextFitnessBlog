@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimateSharedLayout, AnimatePresence } from 'framer-motion'
 import AdminPage from '../../../components/AdminPage'
 import axios from 'axios'
@@ -22,12 +22,29 @@ export async function getServerSideProps(context) {
 }
 
 const Categories = ({ categories }) => {
-    const [reRender, setReRender] = useState(false)
+    // console.log(categories)
     const [isLoading, setIsLoading] = useState(null)
     const [selectedCategory, setSelectedCategory] = useState(null)
     const [isError, setIsError] = useState(false)
     const categoryRef = useRef(null)
     const { data: session } = useSession()
+    const [allCategories, setAllCategories] = useState(categories)
+
+    const getAllCategories = () =>{
+        setIsLoading(true)
+        axios.get('/api/categories').then(res => {
+            setIsLoading(false)
+            setAllCategories(res.data)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
+
+    useEffect(()=>{
+        if(selectedCategory == null){
+            getAllCategories()
+        }
+    },[selectedCategory])
 
     const addCategory = () => {
         if (categoryRef.current.value == '') {
@@ -42,13 +59,12 @@ const Categories = ({ categories }) => {
             }).then(res => {
                 categoryRef.current.value = ''
                 setIsLoading(false)
-                // console.log(res)
+                getAllCategories()
                 // router.replace("/admin/categories")
             }).catch(error => {
                 console.log(error)
             })
         }
-        setReRender(!reRender)
     }
 
     return (
@@ -68,7 +84,7 @@ const Categories = ({ categories }) => {
                         {
                             isLoading
                                 ? <Loader />
-                                : <CategoriesList listOfCategories={categories} selectCategory={setSelectedCategory} />
+                                : <CategoriesList listOfCategories={allCategories} selectCategory={setSelectedCategory} />
                         }
                     </div>
                 </div>
