@@ -4,7 +4,7 @@ import { BiCategory } from 'react-icons/bi'
 import { FaTimes, FaTrashAlt, FaEdit } from 'react-icons/fa'
 import axios from 'axios'
 
-const CategoryModal = ({ categorySelected, selectCategory, refreshData }) => {
+const CategoryModal = ({ categorySelected, selectCategory, refreshingData }) => {
     const [isEditing, setisEditing] = useState(false)
     const [isEmpty, setIsEmpty] = useState(false)
     const nameRef = useRef(null)
@@ -25,6 +25,7 @@ const CategoryModal = ({ categorySelected, selectCategory, refreshData }) => {
                 name: nameRef.current.value
             }).then(res => {
                 selectCategory(null)
+                refreshingData(true)
             }).catch(error => {
                 console.log(error)
             })
@@ -34,6 +35,7 @@ const CategoryModal = ({ categorySelected, selectCategory, refreshData }) => {
     const deleteCategory = () => {
         axios.delete("/api/categories", { data: { categorySelected } }).then(res => {
             selectCategory(null)
+            refreshingData(true)
         }).catch(error => {
             console.log(error)
         })

@@ -29,6 +29,7 @@ const Categories = ({ categories }) => {
     const categoryRef = useRef(null)
     const { data: session } = useSession()
     const [allCategories, setAllCategories] = useState(categories)
+    const [refreshData, setRefreshData] = useState(false)
 
     const getAllCategories = () =>{
         setIsLoading(true)
@@ -41,10 +42,11 @@ const Categories = ({ categories }) => {
     }
 
     useEffect(()=>{
-        if(selectedCategory == null){
+        if(refreshData == true){
             getAllCategories()
+            setRefreshData(false)
         }
-    },[selectedCategory])
+    },[refreshData])
 
     const addCategory = () => {
         if (categoryRef.current.value == '') {
@@ -93,6 +95,7 @@ const Categories = ({ categories }) => {
                         <CategoryModal
                             categorySelected={selectedCategory}
                             selectCategory={setSelectedCategory}
+                            refreshingData={setRefreshData}
                         />
                     }
                 </AnimatePresence>
