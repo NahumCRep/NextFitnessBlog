@@ -3,7 +3,8 @@ const removeImports = require("next-remove-imports")()
 module.exports = removeImports({
     images:{
         domains:[
-          "lh3.googleusercontent.com"
+          "lh3.googleusercontent.com",
+          "images.unsplash.com"
         ]
       }
 })
