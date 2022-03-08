@@ -20,7 +20,7 @@ const CategoriesList = ({ listOfCategories, selectCategory }) => {
                                 dragConstraints={{ top: 1, bottom: 1, right: 1, left: 1 }}
                                 onClick={() => selectCategory(item)}
                             >
-                                <motion.h2 className='font-fgrotesque text-3xl text-gray-200'>{item.name}</motion.h2>
+                                <motion.h2 className='font-fgrotesque text-2xl text-gray-200 flex justify-center items-center'>{item.name}</motion.h2>
                             </motion.button>
                         ))
                     )

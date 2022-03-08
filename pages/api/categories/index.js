@@ -20,12 +20,9 @@ export default async function categorieslist({body, method}, res) {
     }
 
     if (method == 'PUT') {
-        // console.log('PUT',req.body)
-        // console.log(req.body.id)
         await updateDoc(doc(database, 'categories', body.id),{
             name: body.name
         })
-        // const docRef = await database.collection('categories').doc(req.body.id).update({})
         return res.status(200).json({message:'category edited'}) 
     }
 

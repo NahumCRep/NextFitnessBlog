@@ -75,7 +75,7 @@ const Categories = ({ categories }) => {
                 <div className='w-full h-52 md:h-full md:w-[25%]'>
                     <div className='flex flex-col px-5 pt-8 gap-3'>
                         <label className='font-fgrotesque font-bold text-xl tracking-widest' htmlFor='category'><BiCategory color='#7e22ce' size={25} />Add Category</label>
-                        <input className='h-8 outline-none border-none px-2 font-fgrotesque text-lg' ref={categoryRef} type='text' name="category" />
+                        <input className='h-8 outline-none border-none px-2 font-fgrotesque font-semibold text-lg rounded-md shadow-inner shadow-slate-500' ref={categoryRef} type='text' name="category" />
                         {isError && (<p className='text-red-500 font-fgrotesque font-bold text-lg'>ingrese una categoria</p>)}
                         <button onClick={addCategory} className='bg-green-500 hover:bg-green-400 transition-colors duration-500 ease-in-out font-fgrotesque text-xl font-bold flex items-center justify-center gap-2 p-2'><BsPlusLg /> Add</button>
                     </div>
