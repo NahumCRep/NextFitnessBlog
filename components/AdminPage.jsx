@@ -15,7 +15,7 @@ export default function AdminPage({children}) {
     
     useEffect(()=>{
         if(router.route == '/admin') setCurrentPage(0)
-        else if(router.route == '/admin/posts') setCurrentPage(1)
+        else if(router.route == '/admin/posts' || router.route == '/admin/posts/create') setCurrentPage(1)
         else if(router.route == '/admin/categories') setCurrentPage(2)
         else if(router.route == '/admin/comments') setCurrentPage(3)
     },[])
