@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react'
 import AdminPage from '../../../components/AdminPage'
 import dynamic from 'next/dynamic'
-import '@uiw/react-markdown-editor/markdown-editor.css';
+import '@uiw/react-markdown-editor/markdown-editor.css'
 import '@uiw/react-markdown-preview/markdown.css'
 import Loader from '../../../components/Loader'
 import axios from 'axios'
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 const MarkDownEditor = dynamic(
     () => import("@uiw/react-markdown-editor").then((mod) => mod.default), {

@@ -11,18 +11,17 @@ const PostsList = ({ listOfPosts }) => {
                     ? <p className='font-fgrotesque text-lg tracking-widest p-3 h-20 flex items-center justify-center'>No hay Posts Guardados</p>
                     : (
                         listOfPosts.map((item, index) => (
-                            <Link key={item.id} href={`/admin/posts/${item.id}`}>
+                            <Link key={item.id} href={`/admin/posts/${item.id}`} passHref>
                                 <a>
                                     <motion.button
                                         key={item.id}
-                                        className='bg-white w-[300px] p-4 h-[320px] rounded-md flex flex-col justify-center shadow-lg shadow-black '
+                                        className='bg-white w-[300px] p-4 h-[320px] rounded-md flex flex-col justify-center transition-shadow duration-700 shadow-lg shadow-black hover:shadow-sm'
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: [0, 1] }}
                                         transition={{ duration: index / 5 }}
                                         drag={false}
                                         dragElastic={1}
                                         dragConstraints={{ top: 1, bottom: 1, right: 1, left: 1 }}
-                                        onClick={() => selectCategory(item)}
                                     >
                                         <div className='flex items-center gap-2'>
                                             <div className='relative h-10 w-10 mt-1 '>

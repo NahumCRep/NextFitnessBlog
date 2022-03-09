@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
+import Router, { useRouter } from 'next/router'
 import AdminPage from '../../../components/AdminPage'
 import Link from 'next/link'
 import axios from 'axios'
@@ -7,19 +8,21 @@ import Loader from '../../../components/Loader'
 import PostsList from '../../../components/PostsList'
 
 
-export async function getServerSideProps(context){
+export async function getServerSideProps(context) {
     const secure = context.req.connection.encrypted
     const url = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts`
     const res = await axios.get(url)
-    return{
-        props:{
+    return {
+        props: {
             posts: res.data
         }
     }
 }
 
 
-const Posts = ({posts}) => {
+const Posts = ({ posts }) => {
+    const router = useRouter();
+    const searchRef = useRef(null)
     console.log(posts)
     // useEffect(() => {
     //     axios.get("/api/posts")
@@ -27,15 +30,23 @@ const Posts = ({posts}) => {
     //             console.log(posts.data)
     //         })
     // }, [])
+    const searchPost = () => {
+        if (searchRef.current.value !== '') {
+            router.push(`/admin/posts/search?name=${searchRef.current.value}`)
+        } else {
+            alert('Ingrese un texto a buscar')
+        }
+    }
+
     return (
         <AdminPage>
             <section className='h-auto w-full'>
-                <div className='flex p-8 justify-between items-center flex-col md:flex-row'>
+                <div className='flex py-5 px-9 justify-between items-center flex-col md:flex-row'>
                     <h1 className='font-faudiowide text-2xl'>Posts</h1>
                     <div className='flex justify-center items-center gap-9 flex-col md:flex-row w-full md:w-auto'>
                         <div className='flex gap-2 mt-3 md:mt-0'>
-                            <input type='text' className='w-[300px] text-center rounded-md px-2 outline-none border-none shadow-inner shadow-slate-500' />
-                            <button className='h-10 p-2 rounded-md flex justify-center items-center bg-white shadow-inner shadow-slate-500'><FaSearch size={20}  /></button>
+                            <input ref={searchRef} type='text' className='w-[300px] text-center rounded-md px-2 outline-none border-none shadow-inner shadow-slate-500' />
+                            <button onClick={() => searchPost()} className='h-10 p-2 rounded-md flex justify-center items-center bg-white shadow-inner shadow-slate-500'><FaSearch size={20} /></button>
                         </div>
                         <Link href="/admin/posts/create"  >
                             <a>
@@ -44,12 +55,14 @@ const Posts = ({posts}) => {
                         </Link>
                     </div>
                 </div>
-                <div className='w-full h-screen p-5 grid grid-cols-1 md:grid-cols-4 justify-items-center ' >
-                    {
-                        posts
-                        ? <PostsList listOfPosts={posts} />
-                        : <Loader /> 
-                    }
+                <div className='h-auto pb-5'>
+                    <div className='w-full h-auto p-5 grid gap-4 grid-cols-auto-fit justify-items-center' >
+                        {
+                            posts
+                                ? <PostsList listOfPosts={posts} />
+                                : <Loader />
+                        }
+                    </div>
                 </div>
             </section>
         </AdminPage>
