@@ -30,4 +30,6 @@ export default async function categorieslist({body, method}, res) {
         await deleteDoc(doc(database, 'categories', body.categorySelected.id))
         return res.status(200).json({message:'category deleted'}) 
     }
+
+    return res.status(200).json({message:'operacion no disponible'})
 }
