@@ -37,16 +37,19 @@ const Create = ({ categories }) => {
     const titulo = useRef()
     const image = useRef()
     const category = useRef()
+    const description = useRef()
 
     const saveContent = () => {
-        // console.log(content)
-        // console.log(category.current.value)
         setIsPendingSave(true)
+        if(!image.current.value.startsWith('http://') || image.current.value.startsWith('https://')){
+            image.current.value = 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80'
+        }
         axios.post("/api/posts/create", {
             title: titulo.current.value,
             author: session.user,
             image: image.current.value,
             category: category.current.value,
+            description: description.current.value,
             date: new Date(),
             content,
         }).then(res => {
@@ -60,7 +63,7 @@ const Create = ({ categories }) => {
 
     return (
         <AdminPage>
-            <div className='p-7 h-screen'>
+            <div className='p-7 h-auto'>
                 <div>
                     <h1 className='font-fgrotesque text-2xl font-bold'>Post Category</h1>
                     <select ref={category} className='w-full md:w-[15%] h-10 mt-3 font-fgrotesque text-lg font-bold py-2 px-4 cursor-pointer rounded-md flex justify-center items-center bg-white shadow-inner shadow-slate-500 outline-none border-none'>
@@ -76,6 +79,8 @@ const Create = ({ categories }) => {
                     <input className='text-black font-fgrotesque text-lg font-bold w-full md:w-[70%] mt-3 h-10 px-4 py-1 rounded-md flex justify-center items-center bg-white shadow-inner shadow-slate-500 outline-none border-none' type="text" ref={titulo} placeholder="Titulo de la publicación"></input>
                     <h1 className='font-fgrotesque text-2xl font-bold mt-4'>Post Image URL</h1>
                     <input className='text-black font-fgrotesque text-lg font-bold w-full md:w-[70%] h-10 mt-3 px-4 py-1 rounded-md flex justify-center items-center bg-white shadow-inner shadow-slate-500 outline-none border-none' type="text" ref={image} placeholder="Imagen de la publicación"></input>
+                    <h1 className='font-fgrotesque text-2xl font-bold mt-4'>Post Description</h1>
+                    <textarea className='text-black font-fgrotesque text-lg font-bold w-full md:w-[70%] h-28 resize-none  mt-3 px-4 py-1 rounded-md flex justify-center items-center bg-white shadow-inner shadow-slate-500 outline-none border-none' type="text" ref={description} />
                 </div>
                 <MarkDownEditor
                     value={content}
