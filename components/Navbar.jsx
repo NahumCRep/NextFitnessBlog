@@ -11,15 +11,19 @@ import { RiLogoutBoxLine } from 'react-icons/ri'
 
 const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false)
-    const [showNavColor, setShowNavColor] = useState(false)
+    const [showNavColor, setShowNavColor] = useState(true)
     const { data: session } = useSession()
     const router = useRouter()
-    console.log(session)
+    // console.log(session)
 
     function getScrollValue() {
-        window.pageYOffset > 50
-            ? setShowNavColor(true)
-            : setShowNavColor(false)
+        if (router.pathname == '/') {
+            if (window.pageYOffset < 50) {
+                setShowNavColor(false)
+            } else {
+                setShowNavColor(true)
+            }
+        }
     }
 
     useEffect(() => {
@@ -30,11 +34,16 @@ const Navbar = () => {
         return () => {
             window.removeEventListener("scroll", getScrollValue);
         };
-    });
 
-    useEffect(() => {
-        console.log(session)
-    }, [])
+    })
+
+    useEffect(()=>{
+        if(router.pathname == '/'){
+            setShowNavColor(false)
+        }else{
+            setShowNavColor(true)
+        }
+    },[router.pathname])
 
     return (
         <nav className={` ${showNavColor ? 'bg-black' : ''} w-full h-[5rem] flex justify-between box-border fixed z-50 shadow-md shadow-black`}>
@@ -54,7 +63,7 @@ const Navbar = () => {
                         {
                             session
                                 ? (
-                                    <Link href={session.user.role === 'admin' ? '/admin':'/profile'}>
+                                    <Link href={session.user.role === 'admin' ? '/admin' : '/profile'}>
                                         <a>
                                             <div className='flex flex-col items-center md:flex-row gap-2'>
                                                 <div className='relative w-[2rem] h-[2rem] flex items-center'>
@@ -74,7 +83,7 @@ const Navbar = () => {
                     </li>
                     <li className='font-fgrotesque text-gray-50 text-xl font-semibold transition-all duration-500 hover:text-purple-600'>
                         {
-                            session && <button className='w-fit outline-none border-none flex items-center justify-center mb-8 md:mb-0' onClick={()=>signOut({ callbackUrl: '/' })} ><RiLogoutBoxLine size={25} /></button>
+                            session && <button className='w-fit outline-none border-none flex items-center justify-center mb-8 md:mb-0' onClick={() => signOut({ callbackUrl: '/' })} ><RiLogoutBoxLine size={25} /></button>
                         }
                     </li>
                 </ul>
