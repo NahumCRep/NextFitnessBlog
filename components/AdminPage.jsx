@@ -15,7 +15,7 @@ export default function AdminPage({children}) {
     
     useEffect(()=>{
         if(router.route == '/admin') setCurrentPage(0)
-        else if(router.route == '/admin/posts' || router.route == '/admin/posts/create') setCurrentPage(1)
+        else if(router.route == '/admin/posts' || router.route == '/admin/posts/create' || router.route == '/admin/posts/create'|| router.route == '/admin/posts/search') setCurrentPage(1)
         else if(router.route == '/admin/categories') setCurrentPage(2)
         else if(router.route == '/admin/comments') setCurrentPage(3)
     },[])
@@ -34,7 +34,7 @@ export default function AdminPage({children}) {
                     <li className={`font-fgrotesque ${currentPage == 3 ? 'border-b-2 border-fuchsia-700':''}`}><Link href="/admin/comments">Comments</Link></li>
                 </ul>
             </section>
-            <section className='bg-slate-300'>
+            <section className='bg-slate-300 h-auto min-h-screen'>
                 {children}
             </section>
         </>
