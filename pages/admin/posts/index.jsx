@@ -5,16 +5,24 @@ import Link from 'next/link'
 import axios from 'axios'
 import { FaSearch } from 'react-icons/fa'
 import Loader from '../../../components/Loader'
-import PostsList from '../../../components/PostsList'
+import SquarePostsList from '../../../components/SquarePostsList'
 
 
 export async function getServerSideProps(context) {
     const secure = context.req.connection.encrypted
-    const url = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts`
-    const res = await axios.get(url)
+    let postsRes
+    if(context.query.name){
+        const url = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/search?name=${context.query.name}`
+        postsRes = await axios.get(url)
+    }else{
+        const url = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts`
+        postsRes = await axios.get(url)
+    }
+    
+   
     return {
         props: {
-            posts: res.data
+            posts: postsRes.data
         }
     }
 }
@@ -32,7 +40,7 @@ const Posts = ({ posts }) => {
     // }, [])
     const searchPost = () => {
         if (searchRef.current.value !== '') {
-            router.push(`/admin/posts/search?name=${searchRef.current.value}`)
+            router.push(`/admin/posts?name=${searchRef.current.value}`)
         } else {
             alert('Ingrese un texto a buscar')
         }
@@ -59,7 +67,7 @@ const Posts = ({ posts }) => {
                     <div className='w-full h-auto p-5 grid gap-4 grid-cols-auto-fit justify-items-center' >
                         {
                             posts
-                                ? <PostsList listOfPosts={posts} />
+                                ? <SquarePostsList listOfPosts={posts} />
                                 : <Loader />
                         }
                     </div>

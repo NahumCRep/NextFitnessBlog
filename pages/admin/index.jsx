@@ -21,16 +21,19 @@ export async function getServerSideProps(context) {
     const userUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/datalog/users_amount`
     const userAmount = await axios.get(userUrl)
     // console.log(userAmount.data)
+    const commentUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/datalog/comments_amount`
+    const commentsAmount = await axios.get(commentUrl)
     return {
         props: {
             posts: postAmount.data,
             categories: categoryAmount.data,
-            users: userAmount.data
+            users: userAmount.data,
+            comments: commentsAmount.data
         }
     }
 }
 
-const Admin = ({ posts, categories, users }) => {
+const Admin = ({ posts, categories, users, comments }) => {
     const { data: session } = useSession()
     return (
         <AdminPage>
@@ -66,7 +69,7 @@ const Admin = ({ posts, categories, users }) => {
                         <LogCard name={'Posts'} amount={posts} >
                             <BsFilePost color='#7e22ce' size={40} />
                         </LogCard>
-                        <LogCard name={'Comments'} amount={'falta'} >
+                        <LogCard name={'Comments'} amount={comments} >
                             <FaRegCommentDots color='#7e22ce' size={40} />
                         </LogCard>
                     </div>

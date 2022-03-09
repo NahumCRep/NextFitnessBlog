@@ -2,11 +2,11 @@ import {collection,getDocs,where,query} from 'firebase/firestore'
 import { database } from '../../../database'
 
 export default async function list(req,res){
-    const postsConsult = collection(database, 'posts')
+    const postsConsult = query(collection(database,"posts"),where("author.email","==","nahumcasco.v@gmail.com"))
     const docs = await getDocs(postsConsult)
-    const posts = []
+    const postsData = []
     docs.forEach(doc=>{
-        posts.push({...doc.data(),id:doc.id})
+        postsData.push({...doc.data(),id:doc.id})
     })
-    return res.json(posts)
+    return res.json(postsData)
 }
