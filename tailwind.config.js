@@ -20,10 +20,14 @@ module.exports = {
       animation:{
         'fade-in': 'fadein 2s linear 1'
       },
-      gradientColorStops:{
-        grad_purple: 'bg-gradient-to-br from-black via-fuchsia-700 to-slate-800'
-      }
-
+      gridTemplateColumns: {
+        'auto-fit': 'repeat(auto-fit, minmax(300px, 1fr))',
+        'auto-fill': 'repeat(auto-fill, minmax(300px, 1fr))',
+      },
+      gridTemplateRows: {
+        'auto-fit': 'repeat(auto-fit, minmax(300px, 1fr))',
+        'auto-fill': 'repeat(auto-fill, minmax(300px, 1fr))',
+      },
     },
   },
   plugins: [],
