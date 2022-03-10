@@ -59,7 +59,7 @@ const Admin = ({ posts, categories, users, comments }) => {
                     </div>
                 </div>
                 <div className='flex justify-center w-full'>
-                    <div className='w-full h-auto p-5 grid gap-4 grid-cols-auto-fit justify-items-center'>
+                    <div className='w-full h-auto p-5 grid gap-4 grid-cols-auto-fit grid-rows-auto-fit justify-items-center'>
                         <LogCard name={'Users'} amount={users} >
                             <FaUsers color='#7e22ce' size={40} />
                         </LogCard>
