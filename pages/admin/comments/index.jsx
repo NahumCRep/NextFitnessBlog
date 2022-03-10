@@ -26,24 +26,42 @@ const AdminComments = ({ comments }) => {
   const [selectedComment, setSelectedComment] = useState(null)
   const postRef = useRef(null)
 
-  const getAllPostComments = () => {
-    if (postRef.current.value == '') {
-      setIsError(true)
+  const axiosGetAllComments = (commentValue) => {
+    axios.get(`/api/posts/comments/getall?post=${commentValue}`).then(res => {
+      postRef.current.value = ''
+      setAllComments(res.data)
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
+  const getAllPostComments = (commentPost) => {
+    if (commentPost == undefined) {
+      if (postRef.current.value == '') {
+        setIsError(true)
+      } else {
+        setIsError(false)
+        axiosGetAllComments(postRef.current.value)
+      }
     } else {
-      setIsError(false)
-      axios.get(`/api/posts/comments/getall?post=${postRef.current.value}`).then(res => {
-        postRef.current.value = ''
-        setAllComments(res.data)
-      }).catch(error => {
-        console.log(error)
-      })
+      axiosGetAllComments(commentPost)
     }
   }
 
   const getAllComments = () => {
-      axios.get(`/api/posts/comments/getall`).then(res => {
-        postRef.current.value = ''
-        setAllComments(res.data)
+    axios.get(`/api/posts/comments/getall`).then(res => {
+      postRef.current.value = ''
+      setIsError(false)
+      setAllComments(res.data)
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
+  const deleteComment = (commentID, commentPostName) => {
+    axios.post("/api/posts/comments/delete", { data: { commentID } })
+      .then(res => {
+        getAllPostComments(commentPostName)
       }).catch(error => {
         console.log(error)
       })
@@ -59,8 +77,8 @@ const AdminComments = ({ comments }) => {
             <label className='font-fgrotesque font-bold text-xl tracking-widest' htmlFor='category'><FaRegCommentDots color='#7e22ce' size={25} />Search Post Comments</label>
             <input className='h-8 outline-none border-none px-2 font-fgrotesque font-semibold text-lg rounded-md shadow-inner shadow-slate-500' ref={postRef} type='text' name="category" />
             {isError && (<p className='text-red-500 font-fgrotesque font-bold text-lg'>ingrese el titulo del post</p>)}
-            <button onClick={()=>getAllPostComments()} className='bg-green-500 hover:bg-green-400 transition-colors duration-500 ease-in-out font-fgrotesque text-xl font-bold flex items-center justify-center gap-2 p-2'>Search</button>
-            <button onClick={()=>getAllComments()} className='bg-green-500 hover:bg-green-400 transition-colors duration-500 ease-in-out font-fgrotesque text-xl font-bold flex items-center justify-center gap-2 p-2'>Show All</button>
+            <button onClick={() => getAllPostComments()} className='bg-green-500 hover:bg-green-400 transition-colors duration-500 ease-in-out font-fgrotesque text-xl font-bold flex items-center justify-center gap-2 p-2'>Search</button>
+            <button onClick={() => getAllComments()} className='bg-green-500 hover:bg-green-400 transition-colors duration-500 ease-in-out font-fgrotesque text-xl font-bold flex items-center justify-center gap-2 p-2'>Show All</button>
           </div>
         </div>
         <div className='md:w-[75%] h-auto grid grid-cols-1 md:grid-cols-2 grid-rows-auto-fit gap-2 justify-items-center mt-4 box-border'>
@@ -69,7 +87,7 @@ const AdminComments = ({ comments }) => {
               ? (
                 allComments == ''
                   ? <p>no comments</p>
-                  : <CommentsList postComments={allComments} selectComment={setSelectedComment} />
+                  : <CommentsList postComments={allComments} selectComment={setSelectedComment} deleteCommentFunction={deleteComment} />
               )
               : <Loader />
           }
