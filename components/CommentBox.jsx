@@ -11,7 +11,7 @@ const CommentBox = ({ commentsList }) => {
                     : (
                         commentsList.map((comment) => {
                             return (
-                                <div className='bg-fuchsia-200 w-full h-auto font-fgrotesque p-4'>
+                                <div key={comment.id} className='bg-fuchsia-200 w-full h-auto font-fgrotesque p-4'>
                                     <div className='flex justify-between items-center'>
                                         <div className='flex items-center flex-row gap-2'>
                                             <div className='relative w-[2rem] h-[2rem] flex items-center'>
