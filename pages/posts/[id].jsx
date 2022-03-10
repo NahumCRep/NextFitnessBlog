@@ -28,17 +28,26 @@ const RegularPost = ({ post, comments }) => {
     const { data: session } = useSession()
     const commentRef = useRef(null)
     const [isPendingSave, setIsPendingSave] = useState(false)
+    const [allPostComments, setAllPostComments] = useState(comments)
+
+    const getAllPostComments = () =>{
+        axios.get(`/api/posts/comments/${post.id}`).then(res => {
+            setAllPostComments(res.data)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
 
     const saveComment = () => {
-        setIsPendingSave(true)
         axios.post("/api/posts/comments", {
             post: post.id,
+            postname: post.title,
             author: session.user,
             comment: commentRef.current.value,
             date: new Date()
         }).then(res => {
             commentRef.current.value = ''
-            setIsPendingSave(false)
+            getAllPostComments()
         })
             .catch(error => {
                 console.log(error)
@@ -58,7 +67,7 @@ const RegularPost = ({ post, comments }) => {
                         <button className='w-28 h-11 rounded-md font-fgrotesque text-xl font-semibold transition-color duration-700 ease-in-out bg-blue-400 hover:bg-blue-300'>Save Post</button>
                     </div>
                 </div>
-                <article className='w-[90%] md:w-full h-auto min-h-screen prose prose-xl leading-10 prose-p:my-16 prose-invert p-5 md:0'>
+                <article className='w-[90%] md:w-full h-auto min-h-screen prose prose-p:text-justify prose-xl leading-10 prose-p:my-16 dark:prose-invert p-5 md:0'>
                     <ReactMarkdown>{post.content}</ReactMarkdown>
                 </article>
             </div>
@@ -79,8 +88,8 @@ const RegularPost = ({ post, comments }) => {
                 </div>
                 <div className='mt-4 w-full h-auto mb-4'>
                     {
-                        comments
-                            ? <CommentBox commentsList={comments} />
+                        allPostComments
+                            ? <CommentBox commentsList={allPostComments} />
                             : <Loader />
                     }
                 </div>
