@@ -1,7 +1,7 @@
 import {collection, getDocs, query, where } from "firebase/firestore"
 import { database } from "../../../database"
 
-export default async function getPost(req, res) {
+export default async function searchPost(req, res) {
     if(req.query.name){
         const postsConsult = query(collection(database, "posts"), where("title", "==", req.query.name))
         const docs = await getDocs(postsConsult)
