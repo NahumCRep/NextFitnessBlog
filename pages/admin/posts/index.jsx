@@ -5,7 +5,7 @@ import Link from 'next/link'
 import axios from 'axios'
 import { FaSearch } from 'react-icons/fa'
 import Loader from '../../../components/Loader'
-import SquarePostsList from '../../../components/SquarePostsList'
+import AdminPostsList from '../../../components/AdminPostsList'
 
 
 export async function getServerSideProps(context) {
@@ -67,7 +67,7 @@ const Posts = ({ posts }) => {
                     <div className='w-full h-auto p-5 grid gap-4 grid-cols-auto-fit justify-items-center' >
                         {
                             posts
-                                ? <SquarePostsList listOfPosts={posts} />
+                                ? <AdminPostsList listOfPosts={posts} />
                                 : <Loader />
                         }
                     </div>
