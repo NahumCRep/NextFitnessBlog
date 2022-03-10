@@ -7,10 +7,10 @@ const Page = ({children}) => {
         <div className='h-screen bg-slate-300 flex flex-col justify-between '>
             <Seo />
             <Navbar />
-            <main className='bg-slate-300'>
+            <main className='bg-slate-200 h-auto'>
                 {children}
             </main>
-            <footer className="bg-slate-900 p-10 text-white">
+            <footer className="bg-black p-10 text-white">
                 <ul className='flex'>
                     <li>Link 1</li>
                     <li>Link 1</li>
