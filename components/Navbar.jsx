@@ -58,7 +58,7 @@ const Navbar = () => {
                 <ul className={`w-1/2 md:w-auto ${showMenu ? 'h-screen' : 'h-0'}  bg-black bg-opacity-75 md:bg-transparent  overflow-hidden transition-all duration-700 ease-in-out  z-50 top-[5rem] md:top-0 absolute flex flex-col items-center justify-center gap-20 md:mr-8 md:w-full md:h-full md:relative md:flex-row `}>
                     <li className='font-fgrotesque text-gray-50 text-xl font-semibold transition-all duration-500 hover:text-purple-600'><Link href="/">Home</Link></li>
                     <li className='font-fgrotesque text-gray-50 text-xl font-semibold transition-all duration-500 hover:text-purple-600'><Link href="/posts">Posts</Link></li>
-                    <li className='font-fgrotesque text-gray-50 text-xl font-semibold transition-all duration-500 hover:text-purple-600'><Link href="/">About</Link></li>
+                    <li className='font-fgrotesque text-gray-50 text-xl font-semibold transition-all duration-500 hover:text-purple-600'><Link href="/about">About</Link></li>
                     <li className='font-fgrotesque text-gray-50 text-xl font-semibold transition-all duration-500 hover:text-purple-600'>
                         {
                             session
