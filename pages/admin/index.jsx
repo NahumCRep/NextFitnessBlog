@@ -38,7 +38,7 @@ const Admin = ({ posts, categories, users, comments }) => {
     return (
         <AdminPage>
             <section className='h-auto md:h-screen flex flex-col md:flex-row'>
-                <div className='md:w-[20%] h-full flex flex-col items-start shadow-md shadow-black'>
+                <div className='md:w-[20%] h-full flex flex-col items-start bg-[#212121] shadow-md shadow-black'>
                     <div className='flex flex-col items-start p-4'>
                         {
                             session
@@ -47,15 +47,15 @@ const Admin = ({ posts, categories, users, comments }) => {
                                         <div className='relative w-20 h-20'>
                                             <Image className='rounded-full' src={session.user.image} alt='profile picture' layout='fill' />
                                         </div>
-                                        <p className='font-fgrotesque font-semibold text-xl mt-4' >{session.user.name}</p>
-                                        <p className='font-fgrotesque font-semibold text-xl' >{session.user.email}</p>
+                                        <p className='text-gray-50 font-fgrotesque font-semibold text-xl mt-4' >{session.user.name}</p>
+                                        <p className='text-gray-50 font-fgrotesque font-semibold text-xl' >{session.user.email}</p>
                                     </>
                                 )
                                 : <Loader />
                         }
                     </div>
                     <div className='h-full w-full flex items-end p-4'>
-                        <button onClick={() => signOut({ callbackUrl: '/' })} className='w-full h-10 flex gap-2 items-center justify-center bg-green-500 font-fgrotesque font-bold text-xl'>Logout <RiLogoutBoxLine /></button>
+                        <button onClick={() => signOut({ callbackUrl: '/' })} className='w-full h-10 flex gap-2 items-center justify-center text-gray-50 rounded-lg bg-purple-600 font-fgrotesque font-bold text-xl'>Logout <RiLogoutBoxLine /></button>
                     </div>
                 </div>
                 <div className='flex justify-center w-full'>
