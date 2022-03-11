@@ -28,6 +28,8 @@ module.exports = {
       gridTemplateRows: {
         'auto-fit': 'repeat(auto-fit, minmax(0, 200px))',
         'auto-fill': 'repeat(auto-fill, minmax(300px, 1fr))',
+        'auto-fit-100': 'repeat(auto-fit, minmax(0, 100px))',
+        
       },
     },
   },
