@@ -59,7 +59,7 @@ const RegularPosts = ({posts, categories}) => {
                 </div>
             </div>
             <div className='flex flex-col-reverse md:flex-row w-full h-full my-6'>
-                <div className='h-auto w-full  md:h-full  md:w-[70%] flex flex-col gap-5 border-t-4 md:border-t-0 md:border-r-4 border-fuchsia-600 mt-7 md:mt-0 pt-2 md:pt-0'>
+                <div className='h-auto w-full  md:h-full  md:w-[70%] flex flex-col gap-5 border-t-4 md:border-t-0 md:border-r-4 border-purple-600 mt-7 md:mt-0 pt-2 md:pt-0'>
                     {
                           posts
                           ? <RectanglePostsList listOfPosts={posts} />
@@ -77,7 +77,7 @@ const RegularPosts = ({posts, categories}) => {
                                         return(
                                             <Link key={category.id} href={`/posts?category=${category.name}`} passHref>
                                                 <a>
-                                                    <p className='w-auto h-[40px] p-2 bg-fuchsia-600 font-fgrotesque text-lg font-semibold text-gray-100 rounded-lg flex jus items-center'>{category.name}</p>
+                                                    <p className='w-auto h-[40px] p-2 bg-purple-600 font-fgrotesque text-lg font-semibold text-gray-100 rounded-lg flex jus items-center'>{category.name}</p>
                                                 </a>
                                             </Link>
                                         )
