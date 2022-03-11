@@ -4,6 +4,7 @@ import { database } from '../../../database'
 export default async function highlights(req,res){
     const postsConsult = query(collection(database,"posts"),where("highlight","==",true))
     const docs = await getDocs(postsConsult)
+    // console.log(docs)
     const postsData = []
     docs.forEach(doc=>{
         postsData.push({...doc.data(),id:doc.id})
