@@ -14,7 +14,6 @@ const Navbar = () => {
     const [showNavColor, setShowNavColor] = useState(true)
     const { data: session } = useSession()
     const router = useRouter()
-    // console.log(session)
 
     function getScrollValue() {
         if (router.pathname == '/') {
