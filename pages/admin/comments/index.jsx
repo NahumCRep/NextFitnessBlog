@@ -77,11 +77,11 @@ const AdminComments = ({ comments }) => {
             <label className='font-fgrotesque font-bold text-xl tracking-widest' htmlFor='category'><FaRegCommentDots color='#7e22ce' size={25} />Search Post Comments</label>
             <input className='h-8 outline-none border-none px-2 font-fgrotesque font-semibold text-lg rounded-md shadow-inner shadow-slate-500' ref={postRef} type='text' name="category" />
             {isError && (<p className='text-red-500 font-fgrotesque font-bold text-lg'>ingrese el titulo del post</p>)}
-            <button onClick={() => getAllPostComments()} className='bg-green-500 hover:bg-green-400 transition-colors duration-500 ease-in-out font-fgrotesque text-xl font-bold flex items-center justify-center gap-2 p-2'>Search</button>
-            <button onClick={() => getAllComments()} className='bg-green-500 hover:bg-green-400 transition-colors duration-500 ease-in-out font-fgrotesque text-xl font-bold flex items-center justify-center gap-2 p-2'>Show All</button>
+            <button onClick={() => getAllPostComments()} className='bg-purple-600 hover:bg-purple-500 rounded-xl transition-colors duration-500 ease-in-out font-fgrotesque text-xl font-bold flex items-center justify-center gap-2 p-2'>Search</button>
+            <button onClick={() => getAllComments()} className='bg-purple-600 hover:bg-purple-500 rounded-xl transition-colors duration-500 ease-in-out font-fgrotesque text-xl font-bold flex items-center justify-center gap-2 p-2'>Show All</button>
           </div>
         </div>
-        <div className='md:w-[75%] h-auto grid grid-cols-1 md:grid-cols-2 grid-rows-auto-fit gap-2 justify-items-center mt-4 box-border'>
+        <div className='md:w-[75%] h-auto grid grid-cols-1 md:grid-cols-2 gap-2 p-2 justify-items-center mt-4 box-border'>
           {
             allComments
               ? (
