@@ -57,21 +57,17 @@ const RegularPost = ({ post, comments }) => {
     return (
         <section className='w-full h-auto mt-[5rem] bg-gray-100 flex flex-col gap-8 items-center'>
             <div className='w-[90%] md:w-[70%]'>
-                <div className='flex justify-start w-full  h-20 items-center px-5 pt-8'>
+                <div className='flex justify-start w-full h-20 items-center px-5 pt-8'>
                     <Link href='/posts' passHref>
                         <a>
                             <button className='transition-transform duration-700 ease-in-out hover:-translate-x-1'><FaArrowLeft color='#7e22ce' size={25} /></button>
                         </a>
                     </Link>
-                    {/* <div className='flex gap-2'>
-                        <button className='w-28 h-11 rounded-md font-fgrotesque text-xl font-semibold transition-color duration-700 ease-in-out bg-blue-400 hover:bg-blue-300'>Save Post</button>
-                    </div> */}
-                </div>
-                <article className='w-[90%] md:w-full h-auto min-h-screen prose prose-p:text-justify prose-xl leading-10 prose-p:my-16 dark:prose-invert p-5 md:0'>
-                    <ReactMarkdown>{post.content}</ReactMarkdown>
-                </article>
+                </div> 
             </div>
-
+            <article className='w-[90%] md:w-[70%] prose-p:text-justify h-auto min-h-screen prose prose-h1:text-3xl md:prose-h1:text-6xl prose-xl leading-10 prose-p:my-16 dark:prose-invert p-5 md:0'>
+                    <ReactMarkdown>{post.content}</ReactMarkdown>
+            </article>
             <div className='w-[90%] md:w-[70%] h-auto border-t-4 border-purple-600'>
                 <h1 className='font-faudiowide text-xl p-5'>Comments</h1>
                 <div className='h-[150px]'>
