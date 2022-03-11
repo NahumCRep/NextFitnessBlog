@@ -4,7 +4,9 @@ module.exports = removeImports({
     images:{
         domains:[
           "lh3.googleusercontent.com",
-          "images.unsplash.com"
+          "avatars.githubusercontent.com",
+          "images.unsplash.com",
+          "images.pexels.com"
         ]
       }
 })
