@@ -70,7 +70,7 @@ export default function Home({ highlights }) {
             <p className='text-base md:text-2xl font-semibold'>but before you have to be part of the blog so <button onClick={() => signIn({ callbackUrl: '/' })} className='text-xl md:text-3xl text-purple-600 font-bold outline-none boder-none bg-none'>SingIn!!</button></p>
           </div>
         </div>
-        <div className='w-full h-auto px-6 md:px-20 mt-16 pt-9 pb-6 bg-white rounded-tr-full shadow-xl shadow-black'>
+        <div className='w-full h-auto px-6 md:px-20 mt-16 pt-9 pb-12 bg-white rounded-tr-full shadow-xl shadow-black'>
           <h1 className='font-faudiowide text-3xl text-center md:text-left md:text-5xl px-3 mt-5'>Highlights</h1>
           <div className='w-full h-auto flex flex-col gap-44 mt-16'>
             {
