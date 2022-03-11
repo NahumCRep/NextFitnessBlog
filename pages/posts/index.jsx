@@ -61,8 +61,8 @@ const RegularPosts = ({posts, categories}) => {
             <div className='w-full flex py-5 justify-between items-center flex-col md:flex-row'>
                 <h1 className='font-faudiowide text-2xl'>Posts</h1>
                 <div className='flex justify-center items-center gap-9 flex-col md:flex-row w-full md:w-auto mt-3 md:mt-0'>
-                    <button onClick={()=>getAllPosts()} className='w-full md:w-28 font-fgrotesque text-xl font-bold bg-slate-100'>Search All</button>
-                    <button onClick={()=>getAllHighlights()} className='w-full md:w-28 font-fgrotesque text-xl font-bold bg-slate-100'>Highlights</button>
+                    <button onClick={()=>getAllPosts()} className='w-full h-10 rounded-lg md:w-28 font-fgrotesque text-xl font-bold bg-slate-100'>Search All</button>
+                    <button onClick={()=>getAllHighlights()} className='w-full h-10 rounded-lg md:w-28 font-fgrotesque text-xl font-bold bg-slate-100'>Highlights</button>
                     <div className='flex gap-2 mt-3 md:mt-0'>
                         <input ref={searchRef} type='text' className='w-[300px] text-center rounded-md px-2 outline-none border-none shadow-inner shadow-slate-500' />
                         <button onClick={() => searchPost()} className='h-10 p-2 rounded-md flex justify-center items-center bg-white shadow-inner shadow-slate-500'><FaSearch size={20} /></button>
