@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { FaTrashAlt } from 'react-icons/fa'
 import axios from 'axios'
-
+// w-[90%]  md:w-[450px] h-[160px]
 const CommentsList = ({ postComments, selectComment, deleteCommentFunction }) => {
     return (
         <>
@@ -10,7 +10,7 @@ const CommentsList = ({ postComments, selectComment, deleteCommentFunction }) =>
                 postComments.map((comment, index) => (
                     <motion.div
                         key={comment.id}
-                        className='relative w-[90%]  md:w-[450px] h-[160px] bg-slate-100 p-2 font-fgrotesque rounded-lg my-2 box-border'
+                        className='relative w-full bg-slate-100 p-2 font-fgrotesque rounded-lg my-2 box-border'
                         initial={{ opacity: 0 }}
                         animate={{ opacity: [0, 1] }}
                         transition={{ duration: index / 5 }}
@@ -32,7 +32,7 @@ const CommentsList = ({ postComments, selectComment, deleteCommentFunction }) =>
                                 </div>
                             </div>
                             <div className='w-full flex flex-col items-start'>
-                                <p className='text-xl font-semibold'><span className='font-bold'>Post Title: </span>{comment.postname}</p>
+                                <p className='text-xl font-semibold text-justify'><span className='font-bold'>Post Title: </span>{comment.postname}</p>
                                 <p className='text-xl font-semibold h-[55px] line-clamp-2 text-justify overflow-hidden'><span className='font-bold'>Comment: </span>{comment.comment}</p>
                             </div>
                         </motion.button>
