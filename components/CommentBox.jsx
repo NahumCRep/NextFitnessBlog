@@ -2,7 +2,6 @@ import React from 'react'
 import Image from 'next/image'
 
 const CommentBox = ({ commentsList }) => {
-    console.log(commentsList)
     return (
         <div className='w-full h-auto flex flex-col gap-2'>
             {
