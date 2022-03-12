@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { motion, AnimateSharedLayout, AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 import AdminPage from '../../../components/AdminPage'
 import axios from 'axios'
 import Loader from '../../../components/Loader'
@@ -22,7 +22,6 @@ export async function getServerSideProps(context) {
 }
 
 const Categories = ({ categories }) => {
-    // console.log(categories)
     const [isLoading, setIsLoading] = useState(null)
     const [selectedCategory, setSelectedCategory] = useState(null)
     const [isError, setIsError] = useState(false)
@@ -62,7 +61,6 @@ const Categories = ({ categories }) => {
                 categoryRef.current.value = ''
                 setIsLoading(false)
                 getAllCategories()
-                // router.replace("/admin/categories")
             }).catch(error => {
                 console.log(error)
             })

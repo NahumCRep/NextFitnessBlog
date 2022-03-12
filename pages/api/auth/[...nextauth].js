@@ -13,15 +13,13 @@ export default NextAuth({
         GoogleProvider({
             clientId:process.env.GOOGLE_CLIENT_ID,
             clientSecret:process.env.GOOGLE_CLIENT_SECRET,
-        }),//http://localhost:3000/api/auth/callback/google
+        }),
     ],
     pages:{
         signIn:"/login",
     },
     callbacks:{
         async jwt({token,account}){
-            // console.log('TOKEN',token)
-            // console.log("JWT",account)
             if(account?.providerAccountId){
                 token.id = account.providerAccountId
                 const snapshot = await getDoc(doc(database,"users",account.providerAccountId))
@@ -55,7 +53,7 @@ export default NextAuth({
                 session.user.id = token.id
                 session.user.role = token.role
             }
-            // console.log("Session",session)
+
             return session
         }
     }

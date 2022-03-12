@@ -3,7 +3,6 @@ import { database } from "../../../database";
 
 export default async function categorieslist({body, method}, res) {
     const categoriesCollection = collection(database, 'categories')
-    // console.log(method)
 
     if (method == 'GET') {
         const snapshot = await getDocs(categoriesCollection)

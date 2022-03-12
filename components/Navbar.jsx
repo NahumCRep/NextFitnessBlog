@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { MdLogin } from 'react-icons/md'
 import { FaBars, FaTimes } from 'react-icons/fa'
-import { GiHandGrip, GiJumpingRope, GiWeightLiftingUp } from 'react-icons/gi'
+import { GiJumpingRope, GiWeightLiftingUp } from 'react-icons/gi'
 import { FaUserCircle } from 'react-icons/fa'
 import { RiLogoutBoxLine } from 'react-icons/ri'
 

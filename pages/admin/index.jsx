@@ -14,13 +14,13 @@ export async function getServerSideProps(context) {
     const secure = context.req.connection.encrypted
     const postUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/datalog/posts_amount`
     const postAmount = await axios.get(postUrl)
-    // console.log(postAmount.data)
+
     const categoryUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/datalog/categories_amount`
     const categoryAmount = await axios.get(categoryUrl)
-    // console.log(categoryAmount.data)
+
     const userUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/datalog/users_amount`
     const userAmount = await axios.get(userUrl)
-    // console.log(userAmount.data)
+ 
     const commentUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/datalog/comments_amount`
     const commentsAmount = await axios.get(commentUrl)
     return {

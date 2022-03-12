@@ -48,7 +48,6 @@ const CategoryModal = ({ categorySelected, selectCategory, refreshingData }) => 
                 <motion.div
                     animate={{ scale: [0.7, 1.5, 1] }}
                     exit={{ scale: 0 }}
-                    // className='m-auto bg-white rounded-lg shadow-lg px-14 pt-5 pb-10'
                     className={`m-auto bg-white rounded-lg shadow-lg p-6 w-[270px] ${isEmpty ? 'h-[190px]':'h-[170px]'}  `}
                 >
                     <div className='flex justify-between'>

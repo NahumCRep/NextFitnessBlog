@@ -2,7 +2,7 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { FaTrashAlt } from 'react-icons/fa'
 import axios from 'axios'
-// w-[90%]  md:w-[450px] h-[160px]
+
 const CommentsList = ({ postComments, selectComment, deleteCommentFunction }) => {
     return (
         <>

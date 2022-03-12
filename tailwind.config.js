@@ -6,8 +6,6 @@ module.exports = {
   theme: {
     extend: {
       fontFamily:{
-        farvo:['Arvo', 'serif'],
-        fleague:["'League Gothic'", 'sans-serif'],
         faudiowide:['Audiowide', 'cursive'],
         fgrotesque:["'Darker Grotesque'", 'sans-serif']
       },

@@ -14,8 +14,6 @@ export default async function getPost(req,res){
     }
 
     if(req.method == 'PUT'){
-        // console.log(req.query.id)
-        // console.log(req.body)
         await setDoc(doc(database,"posts",req.query.id), req.body)
         return res.status(200).json({message:'post edited'}) 
     }

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-const HeaderTwo = () => {
+const Header = () => {
     return (
         <div className='w-full h-[100vh] relative bg-black flex flex-col md:flex-row bg-[url(/headerbgOne.jpg)] bg-cover md:bg-contain bg-no-repeat bg-center overflow-hidden'>
             <div className='w-full h-2/5 md:w-1/2 md:h-full flex items-center justify-center md:justify-start md:pl-16'>
@@ -21,6 +21,4 @@ const HeaderTwo = () => {
     )
 }
 
-// chakra, righteous, orbitron, quantico, Audiowide
-
-export default HeaderTwo
+export default Header

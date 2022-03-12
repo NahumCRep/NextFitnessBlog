@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {useRef, useState} from 'react'
+import { useRef } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import RectanglePostsList from '../../components/RectanglePostsList'
 import Loader from '../../components/Loader'

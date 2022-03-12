@@ -1,6 +1,5 @@
 import axios from 'axios'
 import React, { useRef, useState } from 'react'
-import Router, { useRouter } from 'next/router'
 import ReactMarkdown from "react-markdown"
 import Link from 'next/link'
 import { FaArrowLeft } from 'react-icons/fa'

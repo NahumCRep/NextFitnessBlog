@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Image from 'next/image'
-import { useSession, signIn, signOut } from "next-auth/react"
-import Link from 'next/link'
-import HeaderTwo from '../components/HeaderTwo'
-import { GiHandGrip, GiJumpingRope, GiWeightLiftingUp, GiRapidshareArrow } from 'react-icons/gi'
-// import { MdFitnessCenter } from 'react-icons/md'
+import { useSession, signIn } from "next-auth/react"
+import Header from '../components/Header'
+import { GiRapidshareArrow } from 'react-icons/gi'
 import HomeCategoryItem from '../components/HomeCategoryItem'
 import HighLight from '../components/HighLight'
 import Loader from '../components/Loader'
@@ -15,7 +13,7 @@ export async function getServerSideProps(context) {
   const secure = context.req.connection.encrypted
   const url = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/highlights`
   const res = await axios.get(url)
-  // console.log(res.data)
+ 
   return {
     props: {
       highlights: res.data
@@ -42,7 +40,7 @@ export default function Home({ highlights }) {
 
   return (
     <>
-      <HeaderTwo />
+      <Header />
       <section className='h-auto '>
         <div className='w-full h-40 bg-black relative flex flex-col-reverse md:flex-row items-center md:items-start md:justify-between rounded-br-[70%]'>
           <div className='w-[10%] md:w-[40%] h-14 md:h-auto md:flex justify-center items-start hidden'>

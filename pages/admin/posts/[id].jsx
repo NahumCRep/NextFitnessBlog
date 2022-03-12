@@ -38,9 +38,6 @@ export default function Post({ post, categories }) {
 
     const saveContent = (postTitle, postImage, postCategory, postHighlight, postDescription, content) => {
         setIsPendingSave(true)
-        // if(!postImage.startsWith('http://') || postImage.startsWith('https://')){
-        //     postImage = 'https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80'
-        // }
         axios.put(`/api/posts/${post.id}`, {
             title: postTitle,
             author: session.user,

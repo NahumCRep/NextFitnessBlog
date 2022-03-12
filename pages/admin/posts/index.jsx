@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react'
-import Router, { useRouter } from 'next/router'
+import React, { useRef } from 'react'
+import { useRouter } from 'next/router'
 import AdminPage from '../../../components/AdminPage'
 import Link from 'next/link'
 import axios from 'axios'
@@ -35,12 +35,7 @@ const Posts = ({ posts }) => {
     const router = useRouter();
     const searchRef = useRef(null)
     console.log(posts)
-    // useEffect(() => {
-    //     axios.get("/api/posts")
-    //         .then(posts => {
-    //             console.log(posts.data)
-    //         })
-    // }, [])
+
     const searchPost = () => {
         if (searchRef.current.value !== '') {
             router.push(`/admin/posts?name=${searchRef.current.value}`)
