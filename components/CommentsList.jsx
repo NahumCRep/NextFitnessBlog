@@ -10,7 +10,7 @@ const CommentsList = ({ postComments, selectComment, deleteCommentFunction }) =>
                 postComments.map((comment, index) => (
                     <motion.div
                         key={comment.id}
-                        className='relative w-full bg-slate-100 p-2 font-fgrotesque rounded-lg my-2 box-border'
+                        className='relative w-full max-h-[180px] bg-slate-100 p-2 font-fgrotesque rounded-lg my-2 box-border'
                         initial={{ opacity: 0 }}
                         animate={{ opacity: [0, 1] }}
                         transition={{ duration: index / 5 }}
