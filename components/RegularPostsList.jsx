@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const RectanglePostsList = ({ listOfPosts }) => {
+const RegularPostsList = ({ listOfPosts }) => {
     return (
         <>
             {
@@ -53,4 +53,4 @@ const RectanglePostsList = ({ listOfPosts }) => {
     )
 }
 
-export default RectanglePostsList
+export default RegularPostsList
