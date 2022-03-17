@@ -6,7 +6,7 @@ const HighLight = ({highlightPost, reverse}) => {
   return (
     <div className={`w-full h-[500px] md:h-[400px] flex gap-5 flex-col ${reverse ? 'md:flex-row-reverse':'md:flex-row'}`}>
         <div className='relative w-full h-1/2 md:w-1/2 md:h-full'>
-            <Image className='rounded-full' src={highlightPost.image} alt="post image" layout='fill' />
+            <Image className='rounded-full ' src={highlightPost.image} alt="post image" layout='fill' />
         </div>
         <div className='w-full h-1/2 md:w-1/2 md:h-full font-fgrotesque px-3 flex flex-col gap-3 justify-center'>
             <p className='text-3xl md:text-5xl font-bold'>{highlightPost.title}</p>
