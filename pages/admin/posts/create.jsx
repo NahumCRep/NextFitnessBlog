@@ -11,20 +11,35 @@ export async function getServerSideProps(context) {
     const url = `${secure ? "https" : "http"}://${context.req.headers.host}/api/categories`
     const res = await axios.get(url)
 
+    const postUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/datalog/posts_amount`
+    const postAmount = await axios.get(postUrl)
+
     return {
         props: {
-            categories: res.data
+            categories: res.data,
+            quantity: postAmount.data
         }
     }
 }
 
-const Create = ({ categories }) => {
+const Create = ({ categories, quantity }) => {
     const router = useRouter()
     const { data: session } = useSession()
     const [isPendingSave, setIsPendingSave] = useState(false)
 
+    const setPageNumber = () => {
+        if(quantity === 0 || quantity <= 10){
+            return 1
+        }else{
+            if(quantity % 10 === 0){
+                return (quantity / 10) + 1 
+            }
+        }
+    }
+
     const saveContent = (postTitle, postImage, postCategory, postHighlight, postDescription, content) => {
         setIsPendingSave(true)
+        let pageNumber = setPageNumber()
         axios.post("/api/posts/create", {
             title: postTitle,
             author: session.user,
@@ -34,6 +49,7 @@ const Create = ({ categories }) => {
             description: postDescription,
             date: new Date(),
             content,
+            page: pageNumber
         }).then(res => {
             setIsPendingSave(false)
             router.replace("/admin/posts")

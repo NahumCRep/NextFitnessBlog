@@ -79,7 +79,7 @@ export default function Post({ post, categories }) {
                 isEditing
                     ? <div className='w-full h-auto'><PostForm savePostFunction={saveContent} pendingSave={isPendingSave} allCategories={categories} postData={post} modeEditing={isEditing} /></div>
                     : (
-                        <article className='w-[90%] md:w-[80%] prose-p:text-justify h-auto min-h-screen prose prose-h1:text-3xl md:prose-h1:text-6xl prose-xl leading-10 prose-p:my-16 dark:prose-invert p-5 md:0'>
+                        <article className='w-[90%] md:w-[80%] prose-p:text-justify text-black h-auto min-h-screen prose prose-h1:text-black prose-h1:text-3xl md:prose-h1:text-6xl prose-xl leading-10 prose-p:my-16 dark:prose-invert p-5 md:0'>
                             <ReactMarkdown>{post.content}</ReactMarkdown>
                         </article>
                     )
