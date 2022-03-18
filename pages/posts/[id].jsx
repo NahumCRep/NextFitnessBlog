@@ -64,7 +64,7 @@ const RegularPost = ({ post, comments }) => {
                     </Link>
                 </div> 
             </div>
-            <article className='w-[90%] md:w-[70%] prose-p:text-justify text-black h-auto min-h-screen prose prose-h1:text-black prose-h1:text-3xl md:prose-h1:text-6xl prose-xl leading-10 prose-p:my-16 dark:prose-invert p-5 md:0'>
+            <article className='w-[90%] md:w-[100%] prose-p:text-justify text-black h-auto min-h-screen prose prose-h1:text-black prose-h1:text-3xl md:prose-h1:text-6xl prose-xl leading-10 prose-p:my-16 dark:prose-invert p-5 md:0'>
                     <ReactMarkdown>{post.content}</ReactMarkdown>
             </article>
             <div className='w-[90%] md:w-[70%] h-auto border-t-4 border-purple-600'>
