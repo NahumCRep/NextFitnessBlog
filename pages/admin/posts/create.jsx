@@ -28,11 +28,13 @@ const Create = ({ categories, quantity }) => {
     const [isPendingSave, setIsPendingSave] = useState(false)
 
     const setPageNumber = () => {
-        if(quantity === 0 || quantity <= 10){
+        if(quantity === 0 || quantity < 10){
             return 1
         }else{
             if(quantity % 10 === 0){
                 return (quantity / 10) + 1 
+            }else{
+                return (Math.trunc(quantity / 10)) + 1
             }
         }
     }
