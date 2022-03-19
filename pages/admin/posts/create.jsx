@@ -51,7 +51,9 @@ const Create = ({ categories, quantity }) => {
             description: postDescription,
             date: new Date(),
             content,
-            page: pageNumber
+            page: pageNumber,
+            likes:[],
+            dislikes:[]
         }).then(res => {
             setIsPendingSave(false)
             router.replace("/admin/posts")
