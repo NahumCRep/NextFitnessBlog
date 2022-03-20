@@ -47,6 +47,9 @@ export default function Post({ post, categories }) {
             description: postDescription,
             date: new Date(),
             content,
+            page: post.page,
+            likes: post.likes,
+            dislikes: post.dislikes
         }).then(res => {
             setIsPendingSave(false)
             router.replace("/admin/posts")
