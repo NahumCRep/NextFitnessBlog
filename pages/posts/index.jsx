@@ -10,41 +10,18 @@ import Carousel from '../../components/Carousel'
 export async function getServerSideProps(context) {
     const secure = context.req.connection.encrypted
     let postsRes
-    let totalPagesRes
-    if (context.query.name) {
-        const postUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/search?name=${context.query.name}`
-        postsRes = await axios.get(postUrl)
-        //get quantity of pages
-        const paginationUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/pagination?name=${context.query.name}`
-        totalPagesRes = await axios.get(paginationUrl)
-    } else if (context.query.category) {
-        const postUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/search?category=${context.query.category}`
-        postsRes = await axios.get(postUrl)
-        //get quantity of pages
-        const paginationUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/pagination?category=${context.query.category}`
-        totalPagesRes = await axios.get(paginationUrl)
-    } else if (context.query.highlights) {
-        const postUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/highlights`
-        postsRes = await axios.get(postUrl)
-        //get quantity of pages
-        const paginationUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/pagination?highlight=true`
-        totalPagesRes = await axios.get(paginationUrl)
-    } else if (context.query.page) {
-        const postUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts?page=${context.query.page}`
-        postsRes = await axios.get(postUrl)
-        //get quantity of pages
-        const paginationUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/pagination`
-        totalPagesRes = await axios.get(paginationUrl)
-    } else {
-        const postUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts?page=1`
-        postsRes = await axios.get(postUrl)
-        //get quantity of pages
-        const paginationUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/pagination`
-        totalPagesRes = await axios.get(paginationUrl)
-    }
+    let totalPagesRes 
 
+    //get posts
+    const postUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api${context.resolvedUrl}`
+    console.log(postUrl)
+    postsRes = await axios.get(postUrl)
 
+    //get quantity of pages
+    const paginationUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/pagination${context.resolvedUrl}`
+    totalPagesRes = await axios.get(paginationUrl)
 
+    //get highlights for slider
     const highlightsUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/highlights`
     const highlightsRes = await axios.get(highlightsUrl)
 

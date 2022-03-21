@@ -1,5 +1,5 @@
 import { collection, docs, getDocs, query, where, orderBy, limit } from 'firebase/firestore'
-import { database } from '../../../../database'
+import { database } from '../../../database'
 
 export default async function pagination(req, res) {
     let pagesSnaptshot
@@ -9,7 +9,7 @@ export default async function pagination(req, res) {
     } else if (req.query.category) {
         const postsConsult = query(collection(database, "posts"), where("category", "==", req.query.category))
         pagesSnaptshot = await getDocs(postsConsult)
-    } else if(req.query.highlight){
+    } else if(req.query.highlights){
         const postsConsult = query(collection(database,"posts"),where("highlight","==",true))
         pagesSnaptshot = await getDocs(postsConsult)
     } else {
