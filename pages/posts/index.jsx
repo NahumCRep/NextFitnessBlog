@@ -10,22 +10,40 @@ import Carousel from '../../components/Carousel'
 export async function getServerSideProps(context) {
     const secure = context.req.connection.encrypted
     let postsRes
+    let totalPagesRes
     if (context.query.name) {
         const postUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/search?name=${context.query.name}`
         postsRes = await axios.get(postUrl)
+        //get quantity of pages
+        const paginationUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/pagination?name=${context.query.name}`
+        totalPagesRes = await axios.get(paginationUrl)
     } else if (context.query.category) {
         const postUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/search?category=${context.query.category}`
         postsRes = await axios.get(postUrl)
+        //get quantity of pages
+        const paginationUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/pagination?category=${context.query.category}`
+        totalPagesRes = await axios.get(paginationUrl)
     } else if (context.query.highlights) {
         const postUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/highlights`
         postsRes = await axios.get(postUrl)
+        //get quantity of pages
+        const paginationUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/pagination?highlight=true`
+        totalPagesRes = await axios.get(paginationUrl)
     } else if (context.query.page) {
         const postUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts?page=${context.query.page}`
         postsRes = await axios.get(postUrl)
+        //get quantity of pages
+        const paginationUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/pagination`
+        totalPagesRes = await axios.get(paginationUrl)
     } else {
         const postUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts?page=1`
         postsRes = await axios.get(postUrl)
+        //get quantity of pages
+        const paginationUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/pagination`
+        totalPagesRes = await axios.get(paginationUrl)
     }
+
+
 
     const highlightsUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/highlights`
     const highlightsRes = await axios.get(highlightsUrl)
@@ -37,29 +55,25 @@ export async function getServerSideProps(context) {
         props: {
             categories: categoriesRes.data,
             posts: postsRes.data,
-            highlights: highlightsRes.data
+            highlights: highlightsRes.data,
+            pages: totalPagesRes.data
         }
     }
 }
 
 
-const RegularPosts = ({ categories, posts, highlights }) => {
+const RegularPosts = ({ categories, posts, highlights, pages }) => {
     const searchRef = useRef(null)
     const router = useRouter()
     const [maxPage, setMaxPage] = useState()
     const [currentPage, setCurrentPage] = useState(1)
 
     useEffect(() => {
-        let maxPage = []
-        axios.get('/api/posts')
-            .then(res => {
-                res.data.forEach((post) => {
-                    maxPage.push(post.page)
-                })
-                setMaxPage(Math.max(...maxPage))
-            })
-            .catch(error => console.error())
-    }, [])
+        router.query.page
+            ? setCurrentPage(router.query.page)
+            : setCurrentPage(1)
+        setMaxPage(pages)
+    }, [posts])
 
     const searchPost = () => {
         if (searchRef.current.value !== '') {
@@ -79,19 +93,35 @@ const RegularPosts = ({ categories, posts, highlights }) => {
     }
 
     const nextPage = () => {
-
+        if (currentPage < maxPage) {
+            router.query
+                ? router.push({ pathname: router.pathname, query: { ...router.query, page: parseInt(currentPage) + 1 } })
+                : router.push(`/posts?page=${parseInt(currentPage) + 1}`)
+        }
     }
 
     const prevPage = () => {
-
+        if (currentPage > 1) {
+            router.query
+                ? router.push({ pathname: router.pathname, query: { ...router.query, page: parseInt(currentPage) - 1 } })
+                : router.push(`/posts?page=${parseInt(currentPage) - 1}`)
+        }
     }
 
     const firstPage = () => {
-        router.push('/posts?page=1')
+        if (maxPage > 1) {
+            router.query
+                ? router.push({ pathname: router.pathname, query: { ...router.query, page: 1 } })
+                : router.push('/posts?page=1')
+        }
     }
 
     const lastPage = () => {
-        router.push(`/posts?page=${maxPage}`)
+        if (maxPage > 1) {
+            router.query
+                ? router.push({ pathname: router.pathname, query: { ...router.query, page: maxPage } })
+                : router.push(`/posts?page=${maxPage}`)
+        }
     }
 
     return (
@@ -132,20 +162,22 @@ const RegularPosts = ({ categories, posts, highlights }) => {
                     </div>
 
                 </div>
-                <div className='h-auto w-full  md:h-full  md:w-[75%] flex flex-col gap-5 border-t-4 md:border-t-0 md:border-r-4 border-purple-600 mt-7 md:mt-0 pt-2 md:pt-0'>
-                    {
-                        posts
-                            ? <RegularPostsList listOfPosts={posts} />
-                            : <Loader />
-                    }
-                    <div className='w-full h-[70px] flex gap-4 items-center justify-center font-fgrotesque font-bold'>
-                        <button onClick={()=>firstPage()} className='py-1 px-2 bg-slate-50 rounded-md font-bold'><span className='text-xl'>&#171;</span> first</button>
-                        <button className='py-1 px-4 bg-slate-50 rounded-md text-xl font-bold'>&#8249;</button>
+                <div className='h-auto w-full md:h-full md:min-h-screen md:w-[75%] flex flex-col gap-5 border-t-4 md:border-t-0 md:border-r-4 border-purple-600 mt-7 md:mt-0 pt-2 md:pt-0'>
+                    <div className='h-auto min-h-screen flex flex-col gap-5'>
                         {
-                           maxPage && <p>{`${currentPage}-${maxPage}`}</p>
+                            posts
+                                ? <RegularPostsList listOfPosts={posts} />
+                                : <Loader />
                         }
-                        <button className='py-1 px-4 bg-slate-50 rounded-md text-xl font-bold'>&#8250;</button>
-                        <button onClick={()=>lastPage()} className='py-1 px-2 bg-slate-50 rounded-md font-bold'>last <span className='text-xl'>&#187;</span></button>
+                    </div>
+                    <div className='w-full h-[70px] flex gap-4 items-center justify-center font-fgrotesque font-bold'>
+                        <button onClick={() => firstPage()} className='py-1 px-2 bg-slate-50 rounded-md font-bold'><span className='text-xl'>&#171;</span> first</button>
+                        <button onClick={() => prevPage()} className='py-1 px-4 bg-slate-50 rounded-md text-xl font-bold'>&#8249;</button>
+                        {
+                            maxPage && <p>{`${currentPage}-${maxPage}`}</p>
+                        }
+                        <button onClick={() => nextPage()} className='py-1 px-4 bg-slate-50 rounded-md text-xl font-bold'>&#8250;</button>
+                        <button onClick={() => lastPage()} className='py-1 px-2 bg-slate-50 rounded-md font-bold'>last <span className='text-xl'>&#187;</span></button>
                     </div>
                 </div>
             </div>

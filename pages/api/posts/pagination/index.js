@@ -1,16 +1,23 @@
-import { collection, getDocs, query, orderBy, limit } from 'firebase/firestore'
+import { collection, docs, getDocs, query, where, orderBy, limit } from 'firebase/firestore'
 import { database } from '../../../../database'
 
-export default async function pagination({ body }, res) {
+export default async function pagination(req, res) {
+    let pagesSnaptshot
+    if (req.query.name) {
+        const postsConsult = query(collection(database, "posts"), where("title", "==", req.query.name))
+        pagesSnaptshot = await getDocs(postsConsult)
+    } else if (req.query.category) {
+        const postsConsult = query(collection(database, "posts"), where("category", "==", req.query.category))
+        pagesSnaptshot = await getDocs(postsConsult)
+    } else if(req.query.highlight){
+        const postsConsult = query(collection(database,"posts"),where("highlight","==",true))
+        pagesSnaptshot = await getDocs(postsConsult)
+    } else {
+        const postsConsult = collection(database, "posts")
+        pagesSnaptshot = await getDocs(postsConsult)
+    }
     
-    const postsConsult = query(collection(database, "posts"), orderBy('date', 'desc'), limit(10))
-    const snaptshot = await getDocs(postsConsult)
+    const pages = Math.ceil(pagesSnaptshot.size / 10) 
 
-    const posts = []
-    snaptshot.forEach(doc => {
-        posts.push({ ...doc.data(), id: doc.id })
-    })
-    const lastVisible = snaptshot.docs[snaptshot.docs.length - 1];
-    
-    return res.json({posts, lastVisible})
+    return res.json(pages)
 }
