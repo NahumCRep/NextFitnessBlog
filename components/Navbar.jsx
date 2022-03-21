@@ -36,22 +36,26 @@ const Navbar = () => {
 
     })
 
-    useEffect(()=>{
-        if(router.pathname == '/'){
+    useEffect(() => {
+        if (router.pathname == '/') {
             setShowNavColor(false)
-        }else{
+        } else {
             setShowNavColor(true)
         }
-    },[router.pathname])
+    }, [router.pathname])
 
     return (
         <nav className={` ${showNavColor ? 'bg-black' : ''} w-full h-[5rem] flex justify-between box-border fixed z-50 shadow-md shadow-black`}>
-            <div className='h-full w-[30%]  md:pl-16 flex items-center'>
-                <div className={`relative w-44 h-[60%] flex items-center justify-center gap-2`}>
-                    <GiJumpingRope color='#7e22ce' size={25} />
-                    <GiWeightLiftingUp color='#7e22ce' size={25} />
-                    <p className='font-faudiowide text-gray-50 text-xl'>FBlog</p>
-                </div>
+            <div className='h-full w-[30%] md:pl-11 flex items-center'>
+                <Link href={'/'} passHref>
+                    <a>
+                        <div className={`relative w-44 h-[60%] flex items-center justify-center gap-2`}>
+                            <GiJumpingRope color='#7e22ce' size={25} />
+                            <GiWeightLiftingUp color='#7e22ce' size={25} />
+                            <p className='font-faudiowide text-gray-50 text-xl'>FBlog</p>
+                        </div>
+                    </a>
+                </Link>
             </div>
             <div className='w-auto h-[5rem]  flex items-center justify-end md:justify-center'>
                 <ul className={`w-1/2 md:w-auto ${showMenu ? 'h-screen' : 'h-0'}  bg-black bg-opacity-75 md:bg-transparent  overflow-hidden transition-all duration-700 ease-in-out  z-50 top-[5rem] md:top-0 absolute flex flex-col items-center justify-center gap-20 md:mr-8 md:w-full md:h-full md:relative md:flex-row `}>
