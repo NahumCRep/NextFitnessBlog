@@ -18,7 +18,7 @@ export async function getServerSideProps(context) {
         const postUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/highlights`
         postsRes = await axios.get(postUrl)
     }else {
-        const url = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts`
+        const url = `${secure ? "https" : "http"}://${context.req.headers.host}/api/posts/get_all`
         postsRes = await axios.get(url)
     }
 
