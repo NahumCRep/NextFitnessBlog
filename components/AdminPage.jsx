@@ -18,7 +18,7 @@ export default function AdminPage({children}) {
         else if(router.route == '/admin/posts' || router.route == '/admin/posts/create' || router.route == '/admin/posts/create'|| router.route == '/admin/posts/search') setCurrentPage(1)
         else if(router.route == '/admin/categories') setCurrentPage(2)
         else if(router.route == '/admin/comments') setCurrentPage(3)
-    },[])
+    },[router.route])
 
     return (
         <>
