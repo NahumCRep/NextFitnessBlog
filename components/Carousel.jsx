@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
 import { MdArrowBackIosNew, MdArrowForwardIos } from 'react-icons/md'
+import Image from 'next/image'
 
 const Carousel = ({ highlightsPosts, autoPlay }) => {
     const slider = useRef()
@@ -61,7 +62,7 @@ const Carousel = ({ highlightsPosts, autoPlay }) => {
                         highlightsPosts.map((post) => {
                             return (
                                 <div key={post.id} className='h-full w-full min-w-full overflow-hidden relative'>
-                                    <img className='absolute w-full h-full object-cover' src={post.image}></img>
+                                    <Image className='absolute' src={post.image} layout='fill' objectFit='cover' alt='post cover' />
                                     <div className='absolute w-full h-full bg-black flex flex-col justify-center items-center transition-all duration-700 ease-in-out bg-opacity-70 hover:bg-opacity-50'>
                                         <h3 className='font-fgrotesque font-bold text-2xl md:text-4xl text-white'>{post.title}</h3>
                                         <Link href={`/posts/${post.id}`} passHref>
