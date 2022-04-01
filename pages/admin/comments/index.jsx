@@ -5,7 +5,7 @@ import Loader from '../../../components/Loader'
 import { FaRegCommentDots } from 'react-icons/fa'
 import CommentsList from '../../../components/CommentsList'
 import CommentModal from '../../../components/CommentModal'
-import { motion, AnimateSharedLayout, AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion'
 
 export async function getServerSideProps(context) {
   const secure = context.req.connection.encrypted

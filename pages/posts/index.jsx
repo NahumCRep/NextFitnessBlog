@@ -14,7 +14,6 @@ export async function getServerSideProps(context) {
 
     //get posts
     const postUrl = `${secure ? "https" : "http"}://${context.req.headers.host}/api${context.resolvedUrl}`
-    console.log(postUrl)
     postsRes = await axios.get(postUrl)
 
     //get quantity of pages
@@ -148,13 +147,13 @@ const RegularPosts = ({ categories, posts, highlights, pages }) => {
                         }
                     </div>
                     <div className='w-full h-[70px] flex gap-4 items-center justify-center font-fgrotesque font-bold'>
-                        <button onClick={() => firstPage()} className='py-1 px-2 bg-slate-50 rounded-md font-bold'><span className='text-xl'>&#171;</span> first</button>
-                        <button onClick={() => prevPage()} className='py-1 px-4 bg-slate-50 rounded-md text-xl font-bold'>&#8249;</button>
+                        <button onClick={() => firstPage()} className='py-1 px-2 bg-slate-50 rounded-md font-bold'><span className='text-xl'>&laquo;</span> first</button>
+                        <button onClick={() => prevPage()} className='py-1 px-4 bg-slate-50 rounded-md text-xl font-bold'>&lsaquo;</button>
                         {
                             maxPage && <p>{`${currentPage}-${maxPage}`}</p>
                         }
-                        <button onClick={() => nextPage()} className='py-1 px-4 bg-slate-50 rounded-md text-xl font-bold'>&#8250;</button>
-                        <button onClick={() => lastPage()} className='py-1 px-2 bg-slate-50 rounded-md font-bold'>last <span className='text-xl'>&#187;</span></button>
+                        <button onClick={() => nextPage()} className='py-1 px-4 bg-slate-50 rounded-md text-xl font-bold'>&rsaquo;</button>
+                        <button onClick={() => lastPage()} className='py-1 px-2 bg-slate-50 rounded-md font-bold'>last <span className='text-xl'>&raquo;</span></button>
                     </div>
                 </div>
             </div>

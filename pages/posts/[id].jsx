@@ -27,7 +27,6 @@ export async function getServerSideProps(context) {
 const RegularPost = ({ post, comments }) => {
     const { data: session } = useSession()
     const commentRef = useRef(null)
-    const [isPendingSave, setIsPendingSave] = useState(false)
     const [allPostComments, setAllPostComments] = useState(comments)
     const [postRate, setPostRate] = useState({
         likes: post.likes.length,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSession, signOut } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 
 const Profile = () => {
@@ -15,9 +15,6 @@ const Profile = () => {
           <p className='text-base  md:text-xl font-semibold tracking-widest'>{session.user.name}</p>
           <p className='text-base  md:text-xl font-semibold tracking-widest'>{session.user.email}</p>
         </div>
-      </div>
-      <div>
-
       </div>
     </section>
   )
