@@ -1,12 +1,10 @@
 import React from 'react'
 import Navbar from './Navbar'
-import Seo from './Seo'
 import Link from 'next/link'
 
 const Page = ({ children }) => {
     return (
         <div className='min-h-screen h-auto bg-slate-300 flex flex-col justify-between '>
-            <Seo />
             <Navbar />
             <main className='bg-slate-200 h-auto'>
                 {children}
