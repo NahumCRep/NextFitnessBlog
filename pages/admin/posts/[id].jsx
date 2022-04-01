@@ -28,7 +28,7 @@ export default function Post({ post, categories }) {
     const [isPendingSave, setIsPendingSave] = useState(false)
     const { data: session } = useSession()
     const router = useRouter()
-    console.log(post)
+
     const deletePost = () => {
         axios.delete(`/api/posts/${post.id}`)
             .then((res) => {

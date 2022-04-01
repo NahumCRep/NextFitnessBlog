@@ -34,7 +34,6 @@ export async function getServerSideProps(context) {
 const Posts = ({ posts }) => {
     const router = useRouter();
     const searchRef = useRef(null)
-    console.log(posts)
 
     const searchPost = () => {
         if (searchRef.current.value !== '') {
